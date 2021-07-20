@@ -1,5 +1,6 @@
 import 'package:aharnish_project_task/controller/registration-controller.dart';
 import 'package:aharnish_project_task/helper/constant.dart';
+import 'package:aharnish_project_task/helper/functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multiselect/flutter_multiselect.dart';
@@ -50,6 +51,11 @@ class UserRegister extends StatelessWidget {
                     onChanged: (data) {
                       controller.name.value = data;
                     },
+                    validator: (value){
+                      if (value.isEmpty){
+                        return 'Please enter your name';
+                      }
+                    },
                   );
                 }),
                 SizedBox(
@@ -77,32 +83,25 @@ class UserRegister extends StatelessWidget {
                 SizedBox(
                   height: 15,
                 ),
-                Obx(() {
-                  return TextFormField(
-                    initialValue: controller.name.value ?? '',
-                    keyboardType: TextInputType.text,
-                    decoration: new InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: Color(0xFFE0E0E0), width: 0.1)),
-                        contentPadding: const EdgeInsets.all(15.0),
-                        fillColor: Colors.white,
-                        hintText: 'Date of Birth',
-                        labelText: 'Date of Birth'),
-                    onTap: () {
-                      showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(1950),
-                        lastDate: DateTime.now(),
-                      );
-                    },
-                    onChanged: (value) {
-                      controller.name.value = value;
-                    },
-                  );
-                }),
+                TextFormField(
+                  controller: controller.dobCtrl,
+                  keyboardType: TextInputType.text,
+                  decoration: new InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          borderSide: BorderSide(
+                              color: Color(0xFFE0E0E0), width: 0.1)),
+                      contentPadding: const EdgeInsets.all(15.0),
+                      fillColor: Colors.white,
+                      hintText: 'Date of Birth',
+                      labelText: 'Date of Birth'),
+                  onTap: () => showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                  ).then((value) {
+                    controller.dobCtrl.text = convertDateTimeTwo(value);
+                  }),
+                ),
                 SizedBox(
                   height: 15,
                 ),
@@ -118,8 +117,7 @@ class UserRegister extends StatelessWidget {
                       hintText: 'Select Gender',
                       labelText: 'Select Gender'),
                   onChanged: (String newValue) {
-                    // controller.task.status= newValue=="Pending" ? "2" :newValue=="New" ? "1" : "3";
-                    //   print( controller.task.status);
+                   controller.gender.value = newValue;
                   },
                   // value:controller.task.statusValue,
                   validator: (value) =>
@@ -274,7 +272,9 @@ class UserRegister extends StatelessWidget {
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ))),
-                    onPressed: () {},
+                    onPressed: () {
+                      controller.addRecord();
+                    },
                     child: Text(
                       'Sign Up',
                       style: TextStyle(

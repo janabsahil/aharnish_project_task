@@ -31,9 +31,10 @@ dependencies:
   cupertino_icons: ^1.0.0
   get: 3.24.0
   shared_preferences: ^0.5.12+2
-  sqflite: ^2.0.0+3
-  intl: ^0.17.0
-  flutter_multiselect: ^1.0.0
+  sqflite: any
+  path_provider: any
+  intl: any
+  flutter_multiselect: any
 
 dev_dependencies:
   flutter_test:
