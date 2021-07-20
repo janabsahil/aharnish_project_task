@@ -1,3 +1,4 @@
+import 'package:aharnish_project_task/controller/login-controller.dart';
 import 'package:aharnish_project_task/controller/registration-controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,7 @@ import 'package:get/get.dart';
 
 class UserLogin extends StatelessWidget {
   static final routeName = '/userLogin';
-  RegisterController controller = Get.put(RegisterController());
+  LoginController controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +84,25 @@ class UserLogin extends StatelessWidget {
                 ),
               );
             }),
+            SizedBox(
+              height: 10,
+            ),
+            TextButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                    padding: MaterialStateProperty.all(
+                        EdgeInsets.only(left: 20, right: 20)),
+                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ))),
+                onPressed: () {
+                  controller.loginValidation;
+                },
+                child: Text(
+                  'Sign Up',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                )),
           ],
         ),
       ),

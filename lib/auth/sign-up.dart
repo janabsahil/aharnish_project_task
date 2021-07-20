@@ -51,11 +51,6 @@ class UserRegister extends StatelessWidget {
                     onChanged: (data) {
                       controller.name.value = data;
                     },
-                    validator: (value){
-                      if (value.isEmpty){
-                        return 'Please enter your name';
-                      }
-                    },
                   );
                 }),
                 SizedBox(
@@ -89,8 +84,8 @@ class UserRegister extends StatelessWidget {
                   decoration: new InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
-                          borderSide: BorderSide(
-                              color: Color(0xFFE0E0E0), width: 0.1)),
+                          borderSide:
+                              BorderSide(color: Color(0xFFE0E0E0), width: 0.1)),
                       contentPadding: const EdgeInsets.all(15.0),
                       fillColor: Colors.white,
                       hintText: 'Date of Birth',
@@ -98,6 +93,8 @@ class UserRegister extends StatelessWidget {
                   onTap: () => showDatePicker(
                     context: context,
                     initialDate: DateTime.now(),
+                    firstDate: DateTime(1950),
+                    lastDate: DateTime(2090),
                   ).then((value) {
                     controller.dobCtrl.text = convertDateTimeTwo(value);
                   }),
@@ -117,7 +114,7 @@ class UserRegister extends StatelessWidget {
                       hintText: 'Select Gender',
                       labelText: 'Select Gender'),
                   onChanged: (String newValue) {
-                   controller.gender.value = newValue;
+                    controller.gender.value = newValue;
                   },
                   // value:controller.task.statusValue,
                   validator: (value) =>
@@ -273,7 +270,7 @@ class UserRegister extends StatelessWidget {
                           borderRadius: BorderRadius.circular(50),
                         ))),
                     onPressed: () {
-                      controller.addRecord();
+                      controller.validation;
                     },
                     child: Text(
                       'Sign Up',
