@@ -2,6 +2,7 @@ import 'package:aharnish_project_task/controller/registration-controller.dart';
 import 'package:aharnish_project_task/helper/constant.dart';
 import 'package:aharnish_project_task/helper/functions.dart';
 import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_multiselect/flutter_multiselect.dart';
 import 'package:get/get.dart';

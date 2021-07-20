@@ -41,4 +41,16 @@ class DatabaseHelper {
     return res;
   }
 
+  // Future<List<User>> userLogin(String email,String password) async {
+  //   var dbClient = await db;
+  //   List<Map> list = await dbClient.rawQuery('SELECT * FROM User where email="$email" and password="$password"');
+  //   List<User> employees = new List();
+  //   for (int i = 0; i < list.length; i++) {
+  //
+  //     employees.add(list[i]);
+  //   }
+  //   print("empdataslite"+employees.toString());
+  //   return employees;
+  // }
+
 }
